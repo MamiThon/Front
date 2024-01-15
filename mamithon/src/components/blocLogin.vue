@@ -4,21 +4,24 @@
             Mamithon
         </h2>
         <form action="submit" class="form-input">
-            <input type="text" name="mail" id="mail" placeholder="Email">
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="text" name="mail" id="mail" v-model="email" placeholder="Email">
+            <input type="password" name="password" id="password" v-model="password" placeholder="Password">
             <input type="submit" value="Login" class="btn-Login">
         </form>
         <button class="redirect-signup" @click="signup">Créé un compte</button>
     </div>
 </template>
 
-<script>  
-
+<script>
+import { login } from "@/services/authService";
 
 
 export default {
     name: "blocLogin",
     components: {
+        email,
+        password,
+        idUser: "",
     },
 
 
@@ -28,8 +31,22 @@ export default {
         },
 
         submitForm() {
-            console.log("submitForm")
-        }
+            login(this.email, this.password).then(({ token, idUser }) => {
+                if (!token) {
+                    console.log("No token received");
+                    return;
+                } else {
+                    this.isLoggedIn = true;
+                    this.name = name;
+                    localStorage.setItem("idUser", idUser);
+                    console.log("Received idUser:", idUser);
+                    console.log("Received token:", token);
+                    this.$router.push(`/`);
+                }
+            });
+        },
+
+
     }
 };
 
@@ -38,7 +55,6 @@ export default {
 </script>
 
 <style scoped>
-
 .content-input {
     display: flex;
     flex-direction: column;
@@ -66,13 +82,14 @@ export default {
     /* background-color: fuchsia; */
 }
 
-#mail, #password {
+#mail,
+#password {
     height: 4rem;
     width: 80%;
     border-radius: 20px;
     border: none;
     outline: none;
-    padding-left:1.5rem;
+    padding-left: 1.5rem;
     font-size: 1.3rem;
 }
 
@@ -116,6 +133,5 @@ export default {
 
 
 
-    /* height width heigth width */
-
+/* height width heigth width */
 </style>

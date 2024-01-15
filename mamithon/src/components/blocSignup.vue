@@ -1,5 +1,5 @@
 <template>
-    <div class="content-input" >
+    <div class="content-input">
         <h2 class="title-Signup">
             Mamithon
         </h2>
@@ -14,15 +14,38 @@
 </template>
 
 <script>
+import { newUser } from "@/services/authService";
 
 export default {
     name: "blocSignup",
     components: {
+        name: "",
+        email: "",
+        password: "",
+        idUser: "",
     },
     methods: {
         login() {
             this.$router.push(`/login`)
-        }
+        },
+        submitForm() {
+            newUser(this.name, this.email, this.password).then(
+                ({ token, name, idUser }) => {
+                    if (token) {
+                        this.name = name;
+                        localStorage.setItem("idUser", idUser);
+                        localStorage.setItem("name", name);
+                        console.log("Received token:", token);
+                        console.log("Received name:", name);
+                        this.$router.push("/").catch((err) => {
+                            console.log(err);
+                        });
+                    } else {
+                        console.log("No token received");
+                    }
+                }
+            );
+        },
     }
 };
 
@@ -30,7 +53,6 @@ export default {
 
 
 <style scoped>
-
 .content-input {
     display: flex;
     flex-direction: column;
@@ -58,13 +80,15 @@ export default {
     /* background-color: fuchsia; */
 }
 
-#mail, #password, #username {
+#mail,
+#password,
+#username {
     height: 4rem;
     width: 80%;
     border-radius: 20px;
     border: none;
     outline: none;
-    padding-left:1.5rem;
+    padding-left: 1.5rem;
     font-size: 1.3rem;
 }
 
@@ -100,7 +124,4 @@ export default {
     text-decoration: underline;
     cursor: pointer;
 }
-
-
-
 </style>
