@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <h1>home</h1>
-    </div>
+    <trendingComponent/>
 </template>
     
     
 <script>
+import trendingComponent from '@/components/trending.vue';
 
 
 export default {
     name: "homePage",
     components: {
+        trendingComponent,
 
     },
 };
