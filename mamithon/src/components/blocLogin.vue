@@ -3,7 +3,7 @@
         <h2 class="title-Login">
             Mamithon
         </h2>
-        <form action="submit" class="form-input">
+        <form @submit.prevent="submitForm" class="form-input">
             <input type="text" name="mail" id="mail" v-model="email" placeholder="Email">
             <input type="password" name="password" id="password" v-model="password" placeholder="Password">
             <input type="submit" value="Login" class="btn-Login">
@@ -18,10 +18,12 @@ import { login } from "@/services/authService";
 
 export default {
     name: "blocLogin",
-    components: {
-        email,
-        password,
-        idUser: "",
+    data() {
+        return {
+            email: "",
+            password: "",
+            username: "",
+        };
     },
 
 
@@ -31,16 +33,14 @@ export default {
         },
 
         submitForm() {
-            login(this.email, this.password).then(({ token, idUser }) => {
+            login(this.email, this.password).then(({ token, username}) => {
                 if (!token) {
                     console.log("No token received");
                     return;
                 } else {
-                    this.isLoggedIn = true;
-                    this.name = name;
-                    localStorage.setItem("idUser", idUser);
-                    console.log("Received idUser:", idUser);
                     console.log("Received token:", token);
+                    localStorage.setItem("token", token);
+                    localStorage.setItem("username", username);
                     this.$router.push(`/`);
                 }
             });

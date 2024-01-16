@@ -3,19 +3,17 @@ import axios from 'axios';
 
 export function login(email, password) {
   return axios.get('http://localhost:3030/api/users/', {
-    email,
-    password,
+    "email" : email,
+    "password" : password,
   })
   .then(response => {
     console.log('api response', response); 
     localStorage.setItem('token', response.data.token);
-    localStorage.setItem('name', response.data.name);
-    localStorage.setItem('idUser', response.data.idUser);
-    console.log('Iduser', localStorage.getItem('idUser'));
+    localStorage.setItem('username', response.data.name);
+
     return{
       token: response.data.token,
-      name: response.data.name,
-      idUser: response.data.idUser
+      username: response.data.username,
     } 
   })
   .catch(error => {

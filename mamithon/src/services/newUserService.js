@@ -1,22 +1,22 @@
 //newUserService.js
 import axios from 'axios';
 
-export function newUser(name, email, password) {
+export function newUser(username, email, password) {
   return axios.post('http://localhost:3030/api/users/', {
-    name,
-    email,
-    password,
+    "username": username,
+    "email": email,
+    "password": password,
   },
+  console.log('username', username, 'email', email, 'password', password),
   )
   .then(response => {
+    console.log('api response', response);
     console.log('api response', response); 
     localStorage.setItem('token', response.data.token);
-    localStorage.setItem('name', response.data.name);
-    localStorage.setItem('idUser', response.data.idUser);
+    localStorage.setItem('username', response.data.user.username);
     return{
       token: response.data.token,
-      name: response.data.name,
-      idUser: response.data.idUser
+      username: response.data.user.username,
     } 
   })
   .catch(error => {

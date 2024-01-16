@@ -3,10 +3,10 @@
         <h2 class="title-Signup">
             Mamithon
         </h2>
-        <form action="submit" class="form-input">
-            <input type="text" name="mail" id="mail" placeholder="Email">
-            <input type="text" name="username" id="username" placeholder="Username">
-            <input type="password" name="password" id="password" placeholder="Password">
+        <form @submit.prevent="submitForm" class="form-input">
+            <input type="text" name="mail" id="mail" v-model="email" placeholder="Email">
+            <input type="text" name="username" id="username" v-model="username" placeholder="Username">
+            <input type="password" name="password" id="password" v-model="password" placeholder="Password">
             <input type="submit" value="signup" class="btn-SignUp">
         </form>
         <button class="redirect-login" @click="login">ce connecter</button>
@@ -14,29 +14,29 @@
 </template>
 
 <script>
-import { newUser } from "@/services/authService";
+import { newUser } from "@/services/newUserService";
 
 export default {
     name: "blocSignup",
-    components: {
-        name: "",
-        email: "",
-        password: "",
-        idUser: "",
+    data() {
+        return {
+            email: "",
+            password: "",
+            username: "",
+        };
     },
     methods: {
         login() {
             this.$router.push(`/login`)
         },
         submitForm() {
-            newUser(this.name, this.email, this.password).then(
-                ({ token, name, idUser }) => {
+            newUser(this.username, this.email, this.password).then(
+                ({ token, username }) => {
+                    console.log("juste apres le then",this.username, this.email, this.password);
                     if (token) {
-                        this.name = name;
-                        localStorage.setItem("idUser", idUser);
-                        localStorage.setItem("name", name);
+                        this.username = username;
                         console.log("Received token:", token);
-                        console.log("Received name:", name);
+                        console.log("Received name:", username);
                         this.$router.push("/").catch((err) => {
                             console.log(err);
                         });
