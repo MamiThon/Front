@@ -23,6 +23,7 @@ export default {
             email: "",
             password: "",
             username: "",
+
         };
     },
 
@@ -33,7 +34,8 @@ export default {
         },
 
         submitForm() {
-            login(this.email, this.password).then(({ token, username}) => {
+            login(this.email, this.password).then(
+                ({ token, username}) => {
                 if (!token) {
                     console.log("No token received");
                     return;
@@ -41,6 +43,7 @@ export default {
                     console.log("Received token:", token);
                     localStorage.setItem("token", token);
                     localStorage.setItem("username", username);
+                    localStorage.setItem("isLogged", true);
                     this.$router.push(`/`);
                 }
             });

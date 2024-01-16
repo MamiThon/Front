@@ -6,9 +6,7 @@ export function newUser(username, email, password) {
     "username": username,
     "email": email,
     "password": password,
-  },
-  console.log('username', username, 'email', email, 'password', password),
-  )
+  })
   .then(response => {
     console.log('api response', response);
     console.log('api response', response); 
@@ -16,7 +14,7 @@ export function newUser(username, email, password) {
     localStorage.setItem('username', response.data.user.username);
     return{
       token: response.data.token,
-      username: response.data.user.username,
+      username: response.data.username,
     } 
   })
   .catch(error => {
