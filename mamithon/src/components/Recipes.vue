@@ -1,7 +1,7 @@
 <template>
-    <div class="content-trend">
-        <h2 class="title-trend">
-            Trending
+    <div class="content-recipes">
+        <h2 class="title-recipes">
+            Recettes
         </h2>
         <div class="content-card-recettes">
             <div class="card">
@@ -23,12 +23,13 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
 
 export default {
-    name: "trendingRecipes",
+    name: "lastRecipes",
     components: {
     },
 
@@ -37,7 +38,7 @@ export default {
 </script>
 
 <style scoped>
-.content-trend {
+.content-recipes {
     display: flex;
     flex-direction: column;
     align-items: center;
