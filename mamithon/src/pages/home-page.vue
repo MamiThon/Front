@@ -1,20 +1,33 @@
 <template>
-    <trendingComponent/>
+    <div class="content-pages">
+        <Recipes />
+    </div>
 </template>
     
     
 <script>
-import trendingComponent from '@/components/trending.vue';
+import Recipes from '@/components/Recipes.vue';
 
 
 export default {
     name: "homePage",
     components: {
-        trendingComponent,
+        Recipes,
 
     },
 };
 
 </script>
     
-<style></style>
+<style>
+
+.content-pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+</style>
