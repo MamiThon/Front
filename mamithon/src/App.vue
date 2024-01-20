@@ -36,6 +36,7 @@ export default {
   --var-color5: #2D5E7D;
   --var-color6: #3C7DA6;
   --var-color7: #57B7F2;
+  --var-color8: #343434;
 }
 
 
