@@ -32,11 +32,14 @@ export default {
         submitForm() {
             newUser(this.username, this.email, this.password).then(
                 ({ token, username }) => {
-                    console.log("juste apres le then",this.username, this.email, this.password);
+                    console.log("juste apres le then", this.username, this.email, this.password);
                     if (token) {
                         this.username = username;
                         console.log("Received token:", token);
                         console.log("Received name:", username);
+                        localStorage.setItem("token", token);
+                        localStorage.setItem("username", username);
+                        localStorage.setItem("isLogged", true);
                         this.$router.push("/").catch((err) => {
                             console.log(err);
                         });
