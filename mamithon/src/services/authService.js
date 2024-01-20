@@ -2,7 +2,6 @@
 import axios from 'axios';
 
 export function login(email, password) {
-  console.log('login service', email, password);
   return axios.post('http://localhost:3030/api/users/login', {
     "email" : email,
     "password" : password,

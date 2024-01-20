@@ -1,5 +1,8 @@
 <template>
+
+    <div class="content-pages">
     <blocSignup/>
+    </div>
 </template>
 
 
@@ -16,5 +19,14 @@ export default {
 </script>
 
 <style>
+
+.content-pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
 
 </style>

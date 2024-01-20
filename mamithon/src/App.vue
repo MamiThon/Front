@@ -36,6 +36,7 @@ export default {
   --var-color5: #2D5E7D;
   --var-color6: #3C7DA6;
   --var-color7: #57B7F2;
+  --var-color8: #343434;
 }
 
 
@@ -61,9 +62,9 @@ h3 {
 body {
   height: 100vh;
   width : 100%;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   overflow-x:hidden ;
   background-color: var(--var-color2);
 }
