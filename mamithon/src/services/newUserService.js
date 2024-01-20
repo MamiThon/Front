@@ -9,8 +9,7 @@ export function newUser(username, email, password) {
   })
   .then(response => {
     console.log('api response', response);
-    console.log('api response', response); 
-    localStorage.setItem('token', response.data.token);
+    localStorage.setItem('token', response.data.user.token);
     localStorage.setItem('username', response.data.user.username);
     return{
       token: response.data.token,
