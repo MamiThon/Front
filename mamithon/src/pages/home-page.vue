@@ -1,11 +1,7 @@
 <template>
-  <navbar />
-  <div>
-    <h1>home</h1>
-  </div>
-  <div class="content-pages">
-    <Recipes />
-  </div>
+    <div class="content-pages">
+        <Recipes />
+    </div>
 </template>
 
 <script>
@@ -24,14 +20,16 @@ export default {
     },
 };
 </script>
-
+    
 <style>
+
 .content-pages {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
 }
+
 </style>
