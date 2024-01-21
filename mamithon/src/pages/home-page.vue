@@ -1,5 +1,6 @@
 <template>
     <div class="content-pages">
+        <navbar />
         <Recipes />
     </div>
 </template>
