@@ -34,7 +34,7 @@ export default {
     async VerifIdIngredientCategory() {
       try {
         const category = await getIdIngredientCategory(
-          this.id_categorie_ingredient
+          this.name 
         );
         if (!category) {
           this.functionCreateCategoryIngredient();

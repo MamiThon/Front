@@ -8,6 +8,7 @@ function showCategoryIngredient() {
     return axios.get('http://localhost:3030/api/IngredientCategory/')
         .then(
             response => {
+                // console.log("resultatShowCategory",response.data);
                 return response.data;
             })
         .catch(error => {

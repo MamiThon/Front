@@ -5,6 +5,7 @@
 import axios from 'axios';
 
 export function getIdIngredientCategory(name) {
+    console.log(name);
     return axios.get(`http://localhost:3030/api/categories/IngredientCategory/${name}`)
         .then(
             response => {

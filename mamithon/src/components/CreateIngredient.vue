@@ -45,22 +45,22 @@ export default {
       if (!category) {
         this.$router.push(`/create-category-ingredient`);
       } else {
-        this.functionCreateIngredient();
+        console.log("result get", getIdIngredientCategory(this.id_categorie_ingredient));
+        this.functionCreateIngredient( category);
       }
     } catch (error) {
       console.error(error);
     }
   },
 
-    functionCreateIngredient() {
-      createIngredient(this.name, this.id_categorie_ingredient).then(
+    functionCreateIngredient(id) {
+      createIngredient(this.name, id).then(
         ({ name, id_categorie_ingredient }) => {
-          console.log("juste apres le then", name);
-          if (!name) {
+          console.log("juste apres le then", this.name);
+          if (!this.name) {
             console.log("No name received");
             return;
           } else {
-            console.log("dans le grand else", name);
             console.log("Received name:", name);
             console.log(
               "Received id_categorie_ingredient:",
@@ -70,7 +70,7 @@ export default {
               "id_categorie_ingredient",
               id_categorie_ingredient
             );
-            localStorage.setItem("name", name);
+            localStorage.setItem("name", this.name);
             this.$router.push(`/`);
           }
         }

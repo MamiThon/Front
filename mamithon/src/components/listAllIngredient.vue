@@ -1,59 +1,53 @@
 <template>
     <div class="content-list">
-        <h1>Les ingredients</h1>
         <div class="list-ingredient-category">
             <div class="ingredient" v-for="ingredient in ingredients" :key="ingredient.id">
-                <p>{{ingredient.name}}</p>
+                <p>{{ ingredient }}</p>
             </div>
-            <div class="category" v-for="category in categorys" :key="category.id">
-                <p>{{category.name}}</p>
-            </div>  
         </div>
     </div>
-  </template>
+</template>
   
-  <script>
-  
-  import {showAllIngredient} from '@/services/showAllIngredientService.js';
-  import {showCategoryIngredient} from '@/services/showCategoryIngredientService.js';
+<script>
 
-  export default {
+import { showAllIngredient } from '@/services/showAllIngredientService.js';
+
+export default {
     name: "listAllIngredient",
 
     data() {
-      return {
-        ingredients: [],
-        categorys: [],
-      };
+        return {
+            ingredients: [],
+        };
+    },
+
+    mounted() {
+        try {
+            this.ListIngredient();
+        } catch (error) {
+            console.error(error);
+        }
     },
 
 
     methods: {
 
-        ListIngredient () {
+        ListIngredient() {
             showAllIngredient()
-            .then((response) => {
-                this.ingredients = response.data;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        },  
-
-        ListCategoryIngredient () {
-            showCategoryIngredient()
-            .then((response) => {
-                this.categorys = response.data;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                .then((response) => {
+                    this.ingredients = response.map(ingredient => ({
+                        ingredientName: ingredient.name,
+                        categoryName: ingredient.CategoryIngredient ? ingredient.CategoryIngredient.name : 'No category'
+                    }));
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
 
 
     },
-  };
-  </script>
+};
+</script>
   
-  <style scoped>
-  </style>
+<style scoped></style>

@@ -5,8 +5,9 @@
 import axios from 'axios';
 
 export function createIngredientCategory(name) {
+  console.log(name);
     return axios.post('http://localhost:3030/api/categories/IngredientCategory/', {
-    "name": name,
+    "name": name
   })
   .then(response => {
     console.log('api response', response);
